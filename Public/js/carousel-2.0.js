@@ -87,6 +87,9 @@ var rollWidget = (function (arg) {
          * 点击
          * */
         objDOM.addEventListener('touchstart', function (event) {
+            if(isFinishedOption()){
+                return;
+            }
             if (identifier != -1) {
                 return;
             }
@@ -267,9 +270,9 @@ var rollWidget = (function (arg) {
             }
             /*t = t > 2 ? 0.2 : t;
              t = t > 1 ? 0.2 : t;*/
-            if (t < 1) {
+            // if (t < 1) {
                 t = 0.35;
-            }
+            // }
             $("#" + arg.renderTo).css("transition", "transform " + t + "s ");
             $("#" + arg.renderTo + " figure").css("transition", "color .35s ");
             if (isNaN(val))
@@ -282,7 +285,9 @@ var rollWidget = (function (arg) {
                 var idx = Math.abs(calRoationOffset() / carousel.theta) % completCount;
                 if (idx != lastIDX) {
                     lastIDX=idx;
-                    arg.onChange(idx);
+                    setTimeout(function () {
+                        arg.onChange(idx);
+                    },350);
                 }
                 replaceImgsrc_Defalut();
                 return;
@@ -312,7 +317,9 @@ var rollWidget = (function (arg) {
 
             if (lastIDX != selectVal) {
                 lastIDX = selectVal;
-                arg.onChange(selectVal);
+                setTimeout(function () {
+                    arg.onChange(selectVal);
+                },350);
             }
             InitScale();
             replaceImgsrc_Defalut();
@@ -726,6 +733,16 @@ var rollWidget = (function (arg) {
             }
             return ret;
         }
+        
+        var isFinishedOption=function () {
+            var ret = false;
+            var nowTime = new Date().getTime();
+            if ((nowTime - isEditTime) < 300) {
+                ret = true;
+            }
+            return ret;
+        }
+        
         init();
         return {
             setValue: setValue,
