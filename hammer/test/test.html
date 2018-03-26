@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Title</title>
+</head>
+<body>
+<div id="divv" style="width: 50px;height: 50px;background: red">
+    hhh
+</div>
+
+</body>
+<script src="../hammer.js"></script>
+<script src="../../Public/js/jquery-2.0.2.min.js"></script>
+<script>
+
+    var $div = $('#divv')
+    var hammertime = new Hammer($div,myOptions);
+
+
+    hammertime.on('pan',function (e) {
+        console.log(e);
+    })
+</script>
+</html>

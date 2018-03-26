@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width"/>
+
+    <title>Title</title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="../dist/dialog.css">
+<input type="button" id="btn_alert" value="alert"/>
+<input type="button" id="btn_alert2" value="alert定时关闭"/>
+<input type="button" id="btn_confirm" value="confirm三种按钮"/>
+<input type="button" id="btn_confirmdefault" value="confirm默认"/>
+<script src="../src/jquery-2.2.3.min.js"></script>
+<script src="../src/dialog.js"></script><script>
+    $('#btn_alert').click(function(){
+        $.alert('选好商品才能上传素材哦',true,function(){
+            alert('你点击了ok')
+        })
+    });
+    $('#btn_alert2').click(function(){
+        $.alert('选好商品才能上传素材哦')
+    });
+    $('#btn_confirm').click(function(){
+        $.confirm('下载全部 9 张图片至本地相册?<div class="confirm-title2">文字内容已复制</div>',[{yes:"是"},{no:'否'},{close:'关闭'}],function(type){
+            $.alert('您点击了'+type);
+            this.hide();
+        });
+    })
+    $('#btn_confirmdefault').click(function(){
+        $.confirm('你确定要删除这条消息吗? ',null,function(type){
+            $.alert('您点击了'+type);
+            this.hide();
+        });
+    })</script>
+</body>
+</html>
